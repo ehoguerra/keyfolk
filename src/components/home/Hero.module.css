@@ -1,0 +1,85 @@
+/*
+ * Mobile: headline → keyboard → hint → copy/picker/CTAs (DOM order).
+ * Desktop: headline and aside share the first row; the keyboard spans the full width below.
+ */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding-top: 28px;
+  /* the stage bleeds past the edges on phones; clip (not hidden) so nothing scrolls sideways */
+  overflow-x: clip;
+}
+
+.title {
+  font-size: clamp(2.45rem, 6.1vw, 5.75rem);
+  line-height: 0.92;
+}
+
+.stageWrap {
+  position: relative;
+  /* the keyboard bleeds past the screen edges on small screens so keys stay tappable */
+  width: 138%;
+  margin-left: -19%;
+  margin-top: 4px;
+  overflow: visible;
+}
+
+.hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  margin-top: 4px;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 36px;
+}
+
+@media (min-width: 640px) {
+  .stageWrap {
+    width: 116%;
+    margin-left: -8%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+    padding-top: 40px;
+  }
+
+  .title {
+    grid-column: 1 / span 8;
+    grid-row: 1;
+    align-self: end;
+  }
+
+  .aside {
+    grid-column: 9 / span 4;
+    grid-row: 1;
+    align-self: end;
+    margin-top: 0;
+    padding-bottom: 10px;
+    gap: 20px;
+  }
+
+  .stageWrap {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    margin-left: 0;
+    margin-top: -18px;
+  }
+
+  .hint {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: -6px;
+  }
+}

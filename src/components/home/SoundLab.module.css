@@ -1,0 +1,87 @@
+.stage {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 32px;
+  overflow: hidden;
+  background:
+    radial-gradient(90% 70% at 50% 38%, color-mix(in oklab, var(--surface) 90%, white) 0%, var(--surface) 55%, var(--surface-2) 100%);
+  border: 1px solid var(--line);
+}
+
+.poster,
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.poster {
+  transition: opacity 0s linear 650ms;
+}
+
+.canvas {
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.stage[data-ready="true"] .canvas {
+  opacity: 1;
+}
+
+.stage[data-ready="true"] .poster {
+  opacity: 0;
+}
+
+/* Big CSS keycap: the site's interaction language, scaled up. */
+.pressKey {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  translate: -50% 0;
+  padding: 0;
+  border-radius: 16px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.pressCap {
+  display: block;
+  padding: 6px 7px 14px;
+  border-radius: 16px;
+  background: var(--mod);
+  box-shadow:
+    inset 0 -8px 0 rgb(0 0 0 / 0.18),
+    0 6px 0 -1px color-mix(in oklab, var(--mod) 65%, black),
+    0 16px 30px -14px var(--shadow-color);
+  transition:
+    transform 70ms var(--ease-out-soft),
+    box-shadow 70ms var(--ease-out-soft);
+}
+
+.pressTop {
+  display: block;
+  padding: 14px 26px;
+  border-radius: 11px;
+  background:
+    radial-gradient(120% 90% at 50% 15%, rgb(255 255 255 / 0.22), transparent 60%),
+    var(--alpha);
+  color: var(--alpha-legend);
+  font-stretch: 112%;
+  font-weight: 650;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.pressKey:active .pressCap {
+  transform: translateY(5px);
+  box-shadow:
+    inset 0 -4px 0 rgb(0 0 0 / 0.18),
+    0 1px 0 -1px color-mix(in oklab, var(--mod) 65%, black),
+    0 6px 12px -8px var(--shadow-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas,
+  .pressCap {
+    transition: none;
+  }
+}

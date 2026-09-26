@@ -1,0 +1,33 @@
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2.5 / 1;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.posters {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0s linear 700ms;
+}
+
+.canvas {
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.stage[data-ready="true"] .canvas {
+  opacity: 1;
+}
+
+.stage[data-ready="true"] .posters {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas {
+    transition: none;
+  }
+}
