@@ -87,6 +87,17 @@ test.describe("Acessibilidade e SEO (smoke)", () => {
     expect(blocks.map((b) => JSON.parse(b)["@type"])).toContain("Organization");
   });
 
+  for (const path of ["/", "/loja", "/carrinho"]) {
+    test(`${path} has a share image that actually loads`, async ({ page, request }) => {
+      await page.goto(path);
+      const og = page.locator("meta[property='og:image']").first();
+      await expect(og).toHaveAttribute("content", /opengraph-image/);
+      const res = await request.get((await og.getAttribute("content"))!.replace(/^https?:\/\/[^/]+/, ""));
+      expect(res.status()).toBe(200);
+      expect(res.headers()["content-type"]).toContain("image/png");
+    });
+  }
+
   test("robots, sitemap and manifest are served; the render route is hidden in production", async ({ request }) => {
     const robots = await request.get("/robots.txt");
     expect(robots.ok()).toBe(true);

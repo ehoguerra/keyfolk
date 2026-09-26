@@ -17,6 +17,17 @@ export const SITE = {
   city: "São Paulo, SP",
 } as const;
 
+/**
+ * The home share card (app/opengraph-image.tsx). A page that sets its own `openGraph` replaces the
+ * parent's entirely, image included, so those pages list it again explicitly.
+ */
+export const DEFAULT_OG_IMAGE = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: "Keyfolk: teclado mecânico Folk 75 em 3D com a frase “Teclados que dão vontade de digitar.”",
+};
+
 export const NAV_LINKS = [
   { href: "/loja", label: "Loja" },
   { href: "/loja?cat=teclados", label: "Teclados" },

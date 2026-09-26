@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
 import { OG_COLORS, OG_SIZE, OgMark, ogFonts, renderAsPng } from "@/lib/og";
+import { DEFAULT_OG_IMAGE } from "@/lib/site";
 
-export const alt = "Keyfolk: teclado mecânico Folk 75 em 3D com a frase “Teclados que dão vontade de digitar.”";
+export const alt = DEFAULT_OG_IMAGE.alt;
 export const size = OG_SIZE;
 export const contentType = "image/png";
 
